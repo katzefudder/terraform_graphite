@@ -1,0 +1,8 @@
+---
+
+- name: Install Graphite Replacement
+  hosts: all
+  roles:
+    - host
+    - {role: graphite}
+  become: yes

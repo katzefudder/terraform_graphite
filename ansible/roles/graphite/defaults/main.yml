@@ -1,0 +1,4 @@
+---
+
+graphite_config_directory: "/data/graphite/conf"
+graphite_storage_directory: "/data/graphite/storage"

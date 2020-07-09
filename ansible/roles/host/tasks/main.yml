@@ -1,0 +1,29 @@
+---
+
+- name: Set hostname
+  hostname:
+    name: atlas-graphite-replacement
+
+- name: Remove old Docker
+  yum:
+    name: ['docker','docker-client','docker-common', 'docker-io']
+    state: absent
+
+- name: Install list of packages
+  yum:
+    name: ['git','yum-utils','device-mapper-persistent-data','python-pip', 'logrotate']
+    state: installed
+
+- name: Add Docker repo
+  command: yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+
+- name: Install Docker CE
+  yum: pkg=docker-ce state=installed
+
+- name: Start Docker service
+  service:
+    name: docker
+    state: started
+
+- pip:
+    name: docker-py

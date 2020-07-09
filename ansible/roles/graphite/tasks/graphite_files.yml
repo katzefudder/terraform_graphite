@@ -1,0 +1,81 @@
+---
+
+- name: create {{ graphite_config_directory }}
+  file:
+    path: "{{ graphite_config_directory }}"
+    state: directory
+    mode: 0775
+  become: yes
+
+- name: create {{ graphite_storage_directory }}
+  file:
+    path: "{{ graphite_storage_directory }}"
+    state: directory
+    mode: 0775
+  become: yes
+
+- name: setup aggregation-rules.conf
+  template:
+    src: "conf/aggregation-rules.conf"
+    dest: "{{ graphite_config_directory }}/aggregation-rules.conf"
+  become: yes
+
+- name: setup carbon.conf
+  template:
+    src: "conf/carbon.conf"
+    dest: "{{ graphite_config_directory }}/carbon.conf"
+  become: yes
+
+- name: setup blacklist.conf
+  template:
+    src: "conf/blacklist.conf"
+    dest: "{{ graphite_config_directory }}/blacklist.conf"
+  become: yes
+
+- name: setup whitelist.conf
+  template:
+    src: "conf/whitelist.conf"
+    dest: "{{ graphite_config_directory }}/whitelist.conf"
+  become: yes
+
+- name: setup carbon.amqp.conf
+  template:
+    src: "conf/carbon.amqp.conf"
+    dest: "{{ graphite_config_directory }}/carbon.amqp.conf"
+  become: yes
+
+- name: setup dashboard.conf
+  template:
+    src: "conf/dashboard.conf"
+    dest: "{{ graphite_config_directory }}/dashboard.conf"
+  become: yes
+
+- name: setup graphTemplates.conf
+  template:
+    src: "conf/graphTemplates.conf"
+    dest: "{{ graphite_config_directory }}/graphTemplates.conf"
+  become: yes
+
+- name: setup relay-rules.conf
+  template:
+    src: "conf/relay-rules.conf"
+    dest: "{{ graphite_config_directory }}/relay-rules.conf"
+  become: yes
+
+- name: setup rewrite-rules.conf
+  template:
+    src: "conf/rewrite-rules.conf"
+    dest: "{{ graphite_config_directory }}/rewrite-rules.conf"
+  become: yes
+
+- name: setup storage-aggregation.conf
+  template:
+    src: "conf/storage-aggregation.conf"
+    dest: "{{ graphite_config_directory }}/storage-aggregation.conf"
+  become: yes
+
+- name: setup storage-schemas.conf
+  template:
+    src: "conf/storage-schemas.conf"
+    dest: "{{ graphite_config_directory }}/storage-schemas.conf"
+  become: yes

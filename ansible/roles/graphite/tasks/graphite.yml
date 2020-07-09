@@ -1,0 +1,32 @@
+---
+
+# Use Docker to start Graphite
+- name: start Graphite
+  become: yes
+  docker_container:
+    name: "graphite"
+    image: "graphiteapp/graphite-statsd:1.1.5-10"
+    pull: yes
+    restart: yes
+    restart_policy: always
+    tty: yes
+    env:
+      RELAY: "1"
+    volumes:
+    - "{{ graphite_config_directory }}:/opt/graphite/conf:rw"
+    - "{{ graphite_storage_directory }}:/opt/graphite/storage:rw"
+    published_ports:
+    - "80:80"
+    - "2003:2003"
+    - "2013:2013"
+    - "2014:2014"
+    - "2004:2004"
+    - "2023:2024"
+    - "2024:2024"
+    - "8125:8125/udp"
+    - "8126:8126"
+
+- name: Start datadog-agent
+  service:
+    name: datadog-agent
+    state: started

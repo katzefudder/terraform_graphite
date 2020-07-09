@@ -1,0 +1,7 @@
+---
+
+- name: include graphite files
+  include: graphite_files.yml
+
+- name: include graphite
+  include: graphite.yml
